@@ -82,10 +82,17 @@ class ViewController: UIViewController {
 //        let slice = numbers[1...]
 //        print(Array(slice), type(of: Array(slice)))
         
-        //MARK: - 字典
+        //MARK: - 字典:
+        //   字典其实是哈希表，字典通过键的hashvalue来为每个键指定一个位置，以及它所对应的存储。这也是Dictionary要求它的key类型需要遵守Hashable协议的原因。标准库中所有的基本数据类型都是遵守Hashable协议的。包括字符串，整数，浮点数，布尔值以及不带有关联值的枚举类型。
+        // 优秀的哈希算法特性：1、较少的哈希碰撞；2、快速计算。
+        //MARK: - Set:
+        // 看做成只有键没有值的字典即：有键无值的字典。因此，Set中的元素也必须是遵守Hashable协议的。
+        // Set应用场景： 高效测试一个序列中是否包含某个元素：O(1) ，数组为O(n)
+        
         let defaultSettings: [String: Setting] = [
             "Airplane Mode": .bool(false),
             "Name": .text("My iphone"),
+            
         ]
         
         var settings = defaultSettings
@@ -104,12 +111,23 @@ class ViewController: UIViewController {
         }
         print(settingsAsStrings)
         
-        let singleDigitNumber = 0..<10
-        Array(singleDigitNumber)
-        let lowercaseLetters = Character("a")...Character("z")
+//        let singleDigitNumber = 0..<10
+//        Array(singleDigitNumber)
+//        let lowercaseLetters = Character("a")...Character("z")
         
-        print(lowercaseLetters.overlaps("c"..<"f"))
+//        print(lowercaseLetters.overlaps("c"..<"f"))
         
+        let frequencies = "hello".frequencies
+        frequencies.filter { $0.value > 1 }
+        print(frequencies, frequencies.filter { $0.value > 1 })
+        
+        settings.map {
+            print($0)
+        }
+        
+        let arr = [1,2,3,12,1,3,4,5,6,4,6]
+        print(arr.unique())
+        print(arr.frequencies)
         
     }
 }
