@@ -8,6 +8,9 @@
 
 import UIKit
 
+typealias IntegerLiteralType = UInt32
+
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -66,16 +69,25 @@ class ViewController: UIViewController {
         }
         print([1, 2, 3, 4].map(doubler))
         
-        let doublerAlt = { (i: Int) -> Int in return i * 2 } /// 函数字面量
+        let doublerAlt = { (i: Int) -> Int in return i * 2 } /// 函数字面量，与func定义的函数的区别在于，他的表达式是匿名的，没有被赋予一个名字。Int是整数字面量的默认类型
         
         print([1, 2, 3, 4].map(doublerAlt))
         
+        
+        /// 为所有整数类型定义的一个顶层函数
+        ///
+        /// - Parameter i: 整数
+        /// - Returns: 是否是偶数
         func isEven<T: BinaryInteger>(_ i: T) -> Bool {
             return i % 2 == 0
         }
         
+        // 把顶层函数赋值给变量的话，需要决定它到底要操作哪个类型。变量不能持有泛型函数，它只能指定一个版本
         let int8IsEven: (Int8) -> Bool = isEven
+        print(int8IsEven(4))
         
+        
+        /// 最后， 记住，闭包是指一个函数以及它所捕获的所有变量的组合。而用 {} 来创建的函数被称为闭包表达式。人们常常把这种语法简答地叫做闭包。
         
     }
 
